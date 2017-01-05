@@ -25,16 +25,16 @@ fs.readFile('./census.csv', 'utf-8', function(err, data) {
     objects.push(state);
   });
   console.log(objects);
-  var str = '[ ';
+  var str = '[\n';
 
   objects.forEach(function(object) {
-    str += '{';
+    str += '\t{';
     for(var key in object) {
-      str += key + ': ' + object[key] + ',' + '\n';
+      str += key + ': ' + object[key] + ', ';
     }
     str = str.substring(0, str.length-2) + '},\n';
   });
-  str = str.substring(0, str.length-2) + ' ]';
+  str = str.substring(0, str.length-2) + '\n]';
 
   fs.writeFile('census.json', str, function(err) {
     if(err) throw err;
